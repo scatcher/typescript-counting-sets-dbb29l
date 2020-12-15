@@ -1,22 +1,15 @@
 function countSetsOfThree(numbers: number[], threshold: number): number {
-  const tree = {};
   let count = 0;
-  numbers.forEach((firstNumber, index) => {
-    numbers.slice(index, numbers.length).forEach((secondNumber, nextIndex) => {
-      numbers
-        .slice(nextIndex, numbers.length)
-        .forEach((thirdNumber, finalIndex) => {
-          if (
-            !!firstNumber &&
-            !!secondNumber &&
-            !!thirdNumber &&
-            firstNumber + secondNumber + thirdNumber >= threshold
-          ) {
+  numbers.forEach((firstNumber, firstIndex) => {
+    numbers.forEach((secondNumber, secondIndex) => {
+      if(secondIndex > firstIndex) {
+        numbers.forEach((thirdNumber, thirdIndex) => {
+          if(thirdIndex > secondIndex && firstNumber + secondNumber + thirdNumber <= threshold) {
             count++;
-            debugger;
           }
-        });
-    });
+        })
+      }
+    })
   });
   return count;
 }
